@@ -58,6 +58,15 @@ export default function MealFinder() {
               (s) => normalizeIngredient(s) === normalizeIngredient(i),
             ),
         )
+        .sort(
+          (a, b) =>
+            Number(
+              normalizeIngredient(b).startsWith(normalizeIngredient(query)),
+            ) -
+              Number(
+                normalizeIngredient(a).startsWith(normalizeIngredient(query)),
+              ) || a.localeCompare(b),
+        )
         .slice(0, 6)
     : [];
   function add(value: string) {
